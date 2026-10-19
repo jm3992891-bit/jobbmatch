@@ -1,11 +1,23 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowLeft, MapPin, Briefcase, FileCheck, CheckCircle2, Send, X, Phone, Mail, MessageCircle, FileText } from "lucide-react";
 import Link from "next/link";
 
-const MOCK_CANDIDATES = [
+interface Candidate {
+  id: number;
+  name: string;
+  role: string;
+  skills: string[];
+  location: string;
+  verified: boolean;
+  match: number;
+  email: string;
+  phone: string;
+}
+
+const MOCK_CANDIDATES: Candidate[] = [
   { id: 1, name: "Juan Pérez", role: "Desarrollador Frontend", skills: ["react", "javascript", "tailwind"], location: "Lima", verified: true, match: 95, email: "juan.perez@email.com", phone: "+51 987 654 321" },
   { id: 2, name: "María Gómez", role: "Analista de Datos", skills: ["sql", "python", "excel"], location: "Arequipa", verified: true, match: 88, email: "maria.gomez@email.com", phone: "+51 987 654 322" },
   { id: 3, name: "Carlos Ruiz", role: "Diseñador UI/UX", skills: ["figma", "adobe xd", "css"], location: "Lima", verified: false, match: 70, email: "carlos.ruiz@email.com", phone: "+51 987 654 323" },
@@ -25,8 +37,8 @@ export default function CandidatesPage() {
   const [activeTab, setActiveTab] = useState<'aptos' | 'interesados'>('aptos');
   
   // Lists
-  const [aptos, setAptos] = useState<any[]>([]);
-  const [interesados, setInteresados] = useState<any[]>([]);
+  const [aptos, setAptos] = useState<Candidate[]>([]);
+  const [interesados, setInteresados] = useState<Candidate[]>([]);
   
   // Selection
   const [selectedIds, setSelectedIds] = useState<number[]>([]);
@@ -198,7 +210,7 @@ export default function CandidatesPage() {
                       </div>
                       <div className="flex-1 flex justify-between items-center gap-4">
                         <div className="flex flex-wrap gap-1">
-                          {candidate.skills.slice(0, 3).map(skill => (
+                          {candidate.skills.slice(0, 3).map((skill: string) => (
                             <span key={skill} className="px-2 py-0.5 bg-white text-gray-600 border border-gray-200 text-[11px] rounded-md">
                               {skill}
                             </span>
