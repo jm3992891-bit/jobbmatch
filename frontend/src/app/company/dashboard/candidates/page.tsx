@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowLeft, MapPin, Briefcase, FileCheck, CheckCircle2, Send, X, Phone, Mail, MessageCircle, FileText } from "lucide-react";
 import Link from "next/link";
@@ -27,7 +27,7 @@ const MOCK_CANDIDATES: Candidate[] = [
   { id: 7, name: "Pedro Silva", role: "Analista de Operaciones", skills: ["operaciones", "análisis", "excel avanzado"], location: "Lima", verified: true, match: 91, email: "pedro.silva@email.com", phone: "+51 999 888 777" },
 ];
 
-export default function CandidatesPage() {
+function CandidatesContent() {
   const searchParams = useSearchParams();
   const jobId = searchParams.get("jobId");
   
@@ -331,5 +331,13 @@ export default function CandidatesPage() {
       )}
 
     </div>
+  );
+}
+
+export default function CandidatesPage() {
+  return (
+    <Suspense fallback={<div className="p-12 text-center text-gray-500 font-medium">Cargando candidatos...</div>}>
+      <CandidatesContent />
+    </Suspense>
   );
 }

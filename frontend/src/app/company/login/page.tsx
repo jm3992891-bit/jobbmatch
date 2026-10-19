@@ -1,11 +1,11 @@
-﻿"use client";
+"use client";
 
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Building2, AlertCircle, CheckCircle } from "lucide-react";
 import Link from "next/link";
 
-export default function CompanyLoginPage() {
+function CompanyLoginContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const isRegistered = searchParams.get("registered");
@@ -102,5 +102,13 @@ export default function CompanyLoginPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function CompanyLoginPage() {
+  return (
+    <Suspense fallback={<div className="max-w-md mx-auto px-4 py-16 text-center text-gray-500 font-medium">Cargando...</div>}>
+      <CompanyLoginContent />
+    </Suspense>
   );
 }
