@@ -102,37 +102,37 @@ export default function Home() {
       </div>
 
       {/* Right Panel - Floating Access Card */}
-      <div className="w-full lg:flex-1 flex items-center justify-center lg:justify-end py-8 px-6 sm:px-10 lg:pr-14 xl:pr-24 relative z-20">
-        <div className="w-full max-w-[320px] bg-white rounded-3xl shadow-2xl p-7 border border-white">
-          <div className="text-center mb-6">
-            <h2 className="text-xl font-bold text-[#041628]">Comienza ahora</h2>
-            <p className="text-slate-500 text-xs mt-1 font-medium">
+      <div className="w-full lg:flex-1 flex items-center justify-center lg:justify-end py-10 px-6 sm:px-10 lg:pr-14 xl:pr-24 relative z-20">
+        <div className="w-full max-w-[395px] bg-white rounded-3xl shadow-2xl p-8 sm:p-9 border border-white">
+          <div className="text-center mb-7">
+            <h2 className="text-2xl font-black text-[#041628]">Comienza ahora</h2>
+            <p className="text-slate-500 text-sm mt-1.5 font-medium">
               Elige cómo quieres acceder a la plataforma
             </p>
           </div>
 
-          <div className="space-y-3.5">
+          <div className="space-y-4">
             {/* Regístrate gratis */}
             <Link
               href="/candidate/register"
-              className="flex items-center justify-center gap-2.5 w-full bg-[#00B489] hover:bg-[#009E77] text-white py-3 px-4 rounded-xl font-bold text-sm shadow-md shadow-emerald-500/20 transition-all hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+              className="flex items-center justify-center gap-3 w-full bg-[#00B489] hover:bg-[#009E77] text-white py-3.5 px-5 rounded-xl font-bold text-base shadow-lg shadow-emerald-500/25 transition-all hover:shadow-emerald-500/35 hover:-translate-y-0.5"
             >
-              <User className="w-4 h-4 fill-white" />
+              <User className="w-5 h-5 fill-white" />
               <span>Regístrate gratis</span>
             </Link>
 
             {/* Ya tengo una cuenta */}
             <Link
               href="/candidate/login"
-              className="flex items-center justify-center w-full bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 border border-slate-200 hover:border-slate-300 py-2.5 px-4 rounded-xl font-bold text-sm transition-all hover:-translate-y-0.5"
+              className="flex items-center justify-center w-full bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 border-2 border-slate-200 hover:border-slate-300 py-3 px-5 rounded-xl font-bold text-base transition-all hover:-translate-y-0.5"
             >
               <span>Ya tengo una cuenta</span>
             </Link>
 
             {/* Divider */}
-            <div className="relative py-1 flex items-center justify-center">
+            <div className="relative py-1.5 flex items-center justify-center">
               <div className="border-t border-slate-200 w-full" />
-              <span className="bg-white px-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-widest relative z-10">
+              <span className="bg-white px-3 text-[11px] font-bold text-slate-400 uppercase tracking-widest relative z-10">
                 EMPRESAS
               </span>
             </div>
@@ -140,9 +140,9 @@ export default function Home() {
             {/* Portal Empresas */}
             <Link
               href="/company/login"
-              className="flex items-center justify-center gap-2.5 w-full bg-[#071F36] hover:bg-[#0A2C4D] text-white py-3 px-4 rounded-xl font-bold text-sm shadow-md transition-all hover:-translate-y-0.5"
+              className="flex items-center justify-center gap-3 w-full bg-[#071F36] hover:bg-[#0A2C4D] text-white py-3.5 px-5 rounded-xl font-bold text-base shadow-lg shadow-slate-900/15 transition-all hover:-translate-y-0.5"
             >
-              <Building2 className="w-4 h-4 text-white" />
+              <Building2 className="w-5 h-5 text-white" />
               <span>Portal Empresas</span>
             </Link>
           </div>
