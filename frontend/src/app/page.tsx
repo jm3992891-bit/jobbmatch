@@ -1,79 +1,144 @@
 import Link from "next/link";
-import { CheckCircle2 } from "lucide-react";
+import { User, Building2, Zap, CheckCircle2 } from "lucide-react";
+import { LaboraIcon } from "@/components/LaboraLogo";
 
 export default function Home() {
   return (
-    <div className="min-h-[calc(100vh-4rem)] flex flex-col md:flex-row font-sans">
-      
-      {/* Left Panel - Dark Blue */}
-      <div className="w-full md:w-1/2 bg-[#0B1E36] text-white p-10 md:p-16 flex flex-col justify-center relative">
-        
-        <div className="mb-10">
-          <h1 className="text-2xl font-bold flex items-center gap-2">
-            <span className="bg-[#00B489] text-white px-2 py-1 rounded text-lg">L</span>
-            Labora
-          </h1>
-        </div>
+    <div
+      className="relative min-h-[calc(100vh-4rem)] flex flex-col lg:flex-row font-sans overflow-hidden bg-cover bg-center lg:bg-right"
+      style={{ backgroundImage: "url('/hero-bg.jpg')" }}
+    >
+      {/* Mobile/Tablet Background Tint */}
+      <div className="absolute inset-0 bg-[#051829]/60 lg:hidden pointer-events-none" />
 
-        <h2 className="text-4xl md:text-5xl font-black mb-6 leading-tight">
-          Ofertas de empleo en <span className="text-[#00B489]">3</span> a <span className="text-[#00B489]">7 días</span>
-        </h2>
-
-        <p className="text-gray-300 text-base md:text-lg leading-relaxed mb-10 max-w-lg">
-          Encuentra trabajo rápido y sin complicaciones. Conectamos talento con empresas verificadas en Lima Metropolitana que necesitan personal hoy mismo.
-        </p>
-
-        <ul className="space-y-5 text-gray-300 font-medium text-lg">
-          <li className="flex items-center gap-3">
-            <CheckCircle2 className="text-[#00B489] w-6 h-6 flex-shrink-0" />
-            Postulación en 1 clic (perfil express)
-          </li>
-          <li className="flex items-center gap-3">
-            <CheckCircle2 className="text-[#00B489] w-6 h-6 flex-shrink-0" />
-            Sin necesidad de experiencia previa
-          </li>
-          <li className="flex items-center gap-3">
-            <CheckCircle2 className="text-[#00B489] w-6 h-6 flex-shrink-0" />
-            Empresas 100% verificadas
-          </li>
-        </ul>
-      </div>
-
-      {/* Right Panel - Login/Navigation */}
-      <div 
-        className="w-full md:w-1/2 p-10 md:p-16 flex flex-col justify-center items-center relative overflow-hidden bg-[#E0F2F1]"
-        style={{ backgroundImage: "url('/hero-bg.jpg')", backgroundSize: "cover", backgroundPosition: "center" }}
+      {/* Left Panel - Dark Navy with Diagonal Cut */}
+      <div
+        className="w-full lg:w-[56%] xl:w-[53%] bg-[#051829] text-white flex flex-col justify-between p-8 sm:p-12 lg:py-14 lg:pl-16 lg:pr-24 xl:pl-24 xl:pr-28 relative z-10 lg:[clip-path:polygon(0_0,100%_0,85%_100%,0_100%)] shadow-2xl"
       >
-        {/* Overlay para oscurecer/teñir la foto y resaltar la tarjeta */}
-        <div className="absolute inset-0 bg-[#0B1E36]/40 backdrop-blur-[2px]"></div>
+        {/* Decorative subtle angled accent bars */}
+        <div className="hidden lg:block absolute -top-12 right-12 w-20 h-96 bg-[#00D494]/10 rounded-full rotate-[35deg] pointer-events-none transform -translate-y-4" />
+        <div className="hidden lg:block absolute top-20 right-32 w-12 h-64 bg-[#00D494]/5 rounded-full rotate-[35deg] pointer-events-none" />
 
-        <div className="relative z-10 w-full max-w-md bg-white rounded-3xl shadow-2xl p-8 border border-white">
-          <div className="text-center mb-8">
-            <h3 className="text-2xl font-black text-[#0B1E36] mb-2">Comienza ahora</h3>
-            <p className="text-gray-500 text-sm">Elige cómo quieres acceder a la plataforma</p>
+        {/* Brand & Main Headline */}
+        <div className="relative z-10 max-w-xl">
+          {/* Logo */}
+          <div className="flex items-center gap-3.5 mb-8">
+            <LaboraIcon className="w-10 h-10 lg:w-12 lg:h-12" />
+            <span className="text-white font-black text-3xl lg:text-4xl tracking-tight">
+              Labora
+            </span>
           </div>
 
-          <div className="space-y-4">
-            <Link href="/candidate/register" className="block w-full text-center bg-[#00B489] text-white py-4 rounded-xl font-bold hover:bg-[#009672] transition-colors shadow-lg shadow-teal-500/30 text-lg">
-              Regístrate gratis
-            </Link>
-            
-            <Link href="/candidate/login" className="block w-full text-center bg-white border-2 border-gray-200 text-gray-700 py-3 rounded-xl font-bold hover:bg-gray-50 transition-colors">
-              Ya tengo una cuenta
+          {/* Heading */}
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-[1.12] tracking-tight">
+            Tu próximo trabajo <br />
+            <span className="text-[#00D494]">está más cerca</span>
+          </h1>
+
+          {/* Description */}
+          <p className="mt-5 text-slate-300 text-sm sm:text-base leading-relaxed max-w-lg font-normal">
+            Conectamos tu talento con empresas que buscan personas como tú. Sin
+            complicaciones, sin búsquedas eternas. Aquí las oportunidades te
+            encuentran.
+          </p>
+        </div>
+
+        {/* Feature Badges (3 items in a horizontal row) */}
+        <div className="relative z-10 mt-10 lg:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-5 lg:gap-4 xl:gap-6 pt-6 border-t border-white/10">
+          {/* 1: Postulación rápida */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-[#00D494] text-[#051829] flex items-center justify-center shrink-0 shadow-md">
+              <Zap className="w-5 h-5 fill-current" />
+            </div>
+            <div>
+              <h4 className="text-white font-bold text-xs lg:text-[13px] leading-snug">
+                Postulación rápida
+              </h4>
+              <p className="text-slate-400 text-[11px] leading-snug">
+                En 1 clic (perfil express)
+              </p>
+            </div>
+          </div>
+
+          {/* 2: Sin experiencia previa */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-[#00D494] text-[#051829] flex items-center justify-center shrink-0 shadow-md">
+              <CheckCircle2 className="w-5 h-5 fill-current text-white stroke-[#051829] stroke-2" />
+            </div>
+            <div>
+              <h4 className="text-white font-bold text-xs lg:text-[13px] leading-snug">
+                Sin experiencia previa
+              </h4>
+              <p className="text-slate-400 text-[11px] leading-snug">
+                Tu talento es suficiente
+              </p>
+            </div>
+          </div>
+
+          {/* 3: Empresas verificadas */}
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-[#00D494] text-[#051829] flex items-center justify-center shrink-0 shadow-md">
+              <Building2 className="w-5 h-5 fill-current" />
+            </div>
+            <div>
+              <h4 className="text-white font-bold text-xs lg:text-[13px] leading-snug">
+                Empresas verificadas
+              </h4>
+              <p className="text-slate-400 text-[11px] leading-snug">
+                Trabaja con confianza
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right Panel - Floating Access Card */}
+      <div className="w-full lg:flex-1 flex items-center justify-center lg:justify-end p-6 sm:p-10 lg:pr-16 xl:pr-24 py-12 relative z-20">
+        <div className="w-full max-w-[380px] bg-white rounded-3xl shadow-2xl p-7 sm:p-8 border border-white">
+          <div className="text-center mb-6">
+            <h2 className="text-2xl font-black text-[#051829]">Comienza ahora</h2>
+            <p className="text-slate-500 text-xs sm:text-sm mt-1 font-medium">
+              Elige cómo quieres acceder a la plataforma
+            </p>
+          </div>
+
+          <div className="space-y-3.5">
+            {/* Regístrate gratis */}
+            <Link
+              href="/candidate/register"
+              className="flex items-center justify-center gap-2.5 w-full bg-[#00B489] hover:bg-[#009E77] text-white py-3.5 px-4 rounded-xl font-bold text-sm sm:text-base shadow-lg shadow-emerald-500/25 transition-all hover:shadow-emerald-500/35 hover:-translate-y-0.5"
+            >
+              <User className="w-4 h-4 fill-white" />
+              <span>Regístrate gratis</span>
             </Link>
 
-            <div className="relative py-4 flex items-center justify-center">
-              <div className="border-t border-gray-200 absolute w-full"></div>
-              <span className="bg-white px-4 text-xs text-gray-400 relative z-10">EMPRESAS</span>
+            {/* Ya tengo una cuenta */}
+            <Link
+              href="/candidate/login"
+              className="flex items-center justify-center w-full bg-white hover:bg-slate-50 text-slate-700 hover:text-slate-900 border border-slate-200 hover:border-slate-300 py-3 px-4 rounded-xl font-bold text-sm sm:text-base transition-all hover:-translate-y-0.5"
+            >
+              <span>Ya tengo una cuenta</span>
+            </Link>
+
+            {/* Divider */}
+            <div className="relative py-2 flex items-center justify-center">
+              <div className="border-t border-slate-200 w-full" />
+              <span className="bg-white px-3 text-[10px] sm:text-[11px] font-bold text-slate-400 uppercase tracking-widest relative z-10">
+                EMPRESAS
+              </span>
             </div>
 
-            <Link href="/company/login" className="block w-full text-center bg-[#0B1E36] text-white py-3 rounded-xl font-bold hover:bg-gray-800 transition-colors">
-              Portal Empresas
+            {/* Portal Empresas */}
+            <Link
+              href="/company/login"
+              className="flex items-center justify-center gap-2.5 w-full bg-[#051829] hover:bg-[#092642] text-white py-3.5 px-4 rounded-xl font-bold text-sm sm:text-base shadow-lg shadow-slate-900/15 transition-all hover:-translate-y-0.5"
+            >
+              <Building2 className="w-4 h-4 text-white" />
+              <span>Portal Empresas</span>
             </Link>
           </div>
         </div>
       </div>
-
     </div>
   );
 }

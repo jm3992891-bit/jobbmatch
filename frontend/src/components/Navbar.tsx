@@ -1,24 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Menu, X, User, MessageCircle } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LaboraLogo from "./LaboraLogo";
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const [candidateName, setCandidateName] = useState("Juan Carlos Pérez");
-
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedName = localStorage.getItem("Labora_candidate_name") || "Juan Carlos Pérez";
-      setCandidateName(savedName);
-    }
-  }, []);
-
+  const isHome = pathname === "/";
   const isCandidateDashboard = pathname?.startsWith("/candidate/dashboard");
   const isCompanyDashboard = pathname?.startsWith("/company/dashboard");
+
+  const [candidateName, setCandidateName] = useState("Juan Carlos Pérez");
   const [companyName, setCompanyName] = useState("Logística Perú S.A.C.");
 
   useEffect(() => {
@@ -31,17 +26,29 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className="bg-institutional-blue text-institutional-white fixed w-full z-50 shadow-md">
+    <nav
+      className={`fixed w-full z-50 transition-colors duration-200 ${
+        isHome
+          ? "bg-white border-b border-gray-100 shadow-sm text-slate-800"
+          : "bg-institutional-blue text-institutional-white shadow-md"
+      }`}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           
           {/* Logo y Menú Principal */}
           <div className="flex items-center gap-6">
-            <Link 
-              href={isCompanyDashboard ? "/company/dashboard" : isCandidateDashboard ? "/candidate/dashboard" : "/"} 
-              className="font-black text-xl tracking-wider text-white flex items-center gap-2"
+            <Link
+              href={
+                isCompanyDashboard
+                  ? "/company/dashboard"
+                  : isCandidateDashboard
+                  ? "/candidate/dashboard"
+                  : "/"
+              }
+              className="flex items-center"
             >
-              Labora
+              <LaboraLogo variant={isHome ? "dark" : "light"} />
             </Link>
 
             {isCandidateDashboard && (
@@ -52,26 +59,26 @@ export default function Navbar() {
 
             {isCompanyDashboard && (
               <nav className="hidden md:flex space-x-1 font-semibold text-sm text-blue-100">
-                <Link 
-                  href="/company/dashboard" 
+                <Link
+                  href="/company/dashboard"
                   className="px-3 py-1.5 rounded-lg hover:bg-white/10 hover:text-white transition-colors"
                 >
                   Principal
                 </Link>
-                <Link 
-                  href="/company/dashboard" 
+                <Link
+                  href="/company/dashboard"
                   className="px-3 py-1.5 rounded-lg bg-white/15 text-white font-bold transition-colors border border-white/20"
                 >
                   Procesos
                 </Link>
-                <Link 
-                  href="/company/dashboard/candidates?jobId=1" 
+                <Link
+                  href="/company/dashboard/candidates?jobId=1"
                   className="px-3 py-1.5 rounded-lg hover:bg-white/10 hover:text-white transition-colors"
                 >
                   Candidatos
                 </Link>
-                <Link 
-                  href="/company/dashboard" 
+                <Link
+                  href="/company/dashboard"
                   className="px-3 py-1.5 rounded-lg hover:bg-white/10 hover:text-white transition-colors"
                 >
                   Reportes
@@ -80,7 +87,7 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* LADO DERECHO SEGÚN SESIÓN */}
+          {/* LADO DERECHO SEGÚN SESIÓN O LANDING */}
           {isCandidateDashboard ? (
             <div className="flex items-center gap-3 md:gap-5">
               <div className="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/20 border border-emerald-400/40 rounded-full text-emerald-300 text-xs font-semibold">
@@ -116,23 +123,35 @@ export default function Navbar() {
             </div>
           ) : (
             <>
-              <div className="hidden md:block">
-                <div className="ml-10 flex items-baseline space-x-4">
-                  <Link href="#" className="hover:bg-blue-800 px-3 py-2 rounded-md font-medium">
-                    Cómo funciona
-                  </Link>
-                  <Link href="#" className="hover:bg-blue-800 px-3 py-2 rounded-md font-medium">
-                    Empresas aliadas
-                  </Link>
-                  <Link href="#" className="hover:bg-blue-800 px-3 py-2 rounded-md font-medium">
-                    Preguntas frecuentes
-                  </Link>
-                </div>
+              <div className="hidden md:flex items-center space-x-8">
+                <Link
+                  href="#como-funciona"
+                  className="text-slate-600 hover:text-slate-900 font-medium text-sm transition-colors"
+                >
+                  Cómo funciona
+                </Link>
+                <Link
+                  href="#empresas-aliadas"
+                  className="text-slate-600 hover:text-slate-900 font-medium text-sm transition-colors"
+                >
+                  Empresas aliadas
+                </Link>
+                <Link
+                  href="#preguntas-frecuentes"
+                  className="text-slate-600 hover:text-slate-900 font-medium text-sm transition-colors"
+                >
+                  Preguntas frecuentes
+                </Link>
               </div>
+
               <div className="-mr-2 flex md:hidden">
                 <button
                   onClick={() => setIsOpen(!isOpen)}
-                  className="inline-flex items-center justify-center p-2 rounded-md hover:text-white hover:bg-blue-800 focus:outline-none"
+                  className={`inline-flex items-center justify-center p-2 rounded-lg focus:outline-none transition-colors ${
+                    isHome
+                      ? "text-slate-600 hover:text-slate-900 hover:bg-slate-100"
+                      : "text-white hover:bg-blue-800"
+                  }`}
                 >
                   <span className="sr-only">Abrir menú principal</span>
                   {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
@@ -143,26 +162,33 @@ export default function Navbar() {
         </div>
       </div>
 
+      {/* Menú móvil desplegable */}
       {isOpen && (
-        <div className="md:hidden bg-institutional-blue pb-3 px-2 pt-2 space-y-1 sm:px-3 shadow-inner">
+        <div
+          className={`md:hidden pb-3 px-4 pt-2 space-y-2 border-t ${
+            isHome
+              ? "bg-white border-gray-100 text-slate-700 shadow-md"
+              : "bg-institutional-blue border-white/10 text-white shadow-inner"
+          }`}
+        >
           <Link
-            href="#"
+            href="#como-funciona"
             onClick={() => setIsOpen(false)}
-            className="block hover:bg-blue-800 px-3 py-2 rounded-md text-base font-medium"
+            className="block py-2 font-medium hover:text-emerald-600 transition-colors"
           >
             Cómo funciona
           </Link>
           <Link
-            href="#"
+            href="#empresas-aliadas"
             onClick={() => setIsOpen(false)}
-            className="block hover:bg-blue-800 px-3 py-2 rounded-md text-base font-medium"
+            className="block py-2 font-medium hover:text-emerald-600 transition-colors"
           >
             Empresas aliadas
           </Link>
           <Link
-            href="#"
+            href="#preguntas-frecuentes"
             onClick={() => setIsOpen(false)}
-            className="block hover:bg-blue-800 px-3 py-2 rounded-md text-base font-medium"
+            className="block py-2 font-medium hover:text-emerald-600 transition-colors"
           >
             Preguntas frecuentes
           </Link>
