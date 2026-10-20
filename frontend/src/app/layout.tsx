@@ -1,4 +1,4 @@
-﻿import type { Metadata } from "next";
+import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 
@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="es">
       <body className="min-h-screen flex flex-col bg-institutional-light">
         <Navbar />
-        <main className="flex-grow pt-16">
+        <main className="flex-grow pt-20">
           {children}
         </main>
       </body>

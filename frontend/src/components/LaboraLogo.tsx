@@ -2,10 +2,14 @@ import React from "react";
 
 export function LaboraIcon({
   className = "",
-  size = 32,
+  size = 36,
+  greenColor = "#05B378",
+  tealDarkColor = "#005542",
 }: {
   className?: string;
   size?: number;
+  greenColor?: string;
+  tealDarkColor?: string;
 }) {
   return (
     <svg
@@ -18,6 +22,8 @@ export function LaboraIcon({
       style={{
         width: `${size}px`,
         height: `${size}px`,
+        minWidth: `${size}px`,
+        minHeight: `${size}px`,
         maxWidth: `${size}px`,
         maxHeight: `${size}px`,
       }}
@@ -30,12 +36,12 @@ export function LaboraIcon({
         height="20"
         rx="5"
         transform="rotate(45 20 5)"
-        fill="#005B52"
+        fill={tealDarkColor}
       />
-      {/* Lower L-shaped folded pill in vibrant cyan/mint */}
+      {/* Lower L-shaped folded pill in vibrant green */}
       <path
         d="M8 12C8 7.58172 11.5817 4 16 4C20.4183 4 24 7.58172 24 12V24H32C36.4183 24 40 27.5817 40 32C40 36.4183 36.4183 40 32 40H16C11.5817 40 8 36.4183 8 32V12Z"
-        fill="#00D494"
+        fill={greenColor}
       />
     </svg>
   );
@@ -44,7 +50,7 @@ export function LaboraIcon({
 export default function LaboraLogo({
   variant = "dark",
   className = "",
-  size = 32,
+  size = 36,
   textSize = "text-2xl",
 }: {
   variant?: "dark" | "light";
@@ -52,11 +58,11 @@ export default function LaboraLogo({
   size?: number;
   textSize?: string;
 }) {
-  const textColor = variant === "light" ? "text-white" : "text-[#06182B]";
+  const textColor = variant === "light" ? "text-white" : "text-[#08223A]";
 
   return (
-    <div className={`flex items-center gap-2.5 shrink-0 ${className}`}>
-      <LaboraIcon size={size} />
+    <div className={`flex items-center gap-3 shrink-0 ${className}`}>
+      <LaboraIcon size={size} greenColor="#05B378" tealDarkColor="#005542" />
       <span className={`font-black tracking-tight ${textSize} ${textColor}`}>
         Labora
       </span>
