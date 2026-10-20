@@ -1,12 +1,26 @@
 import React from "react";
 
-export function LaboraIcon({ className = "w-8 h-8" }: { className?: string }) {
+export function LaboraIcon({
+  className = "",
+  size = 32,
+}: {
+  className?: string;
+  size?: number;
+}) {
   return (
     <svg
+      width={size}
+      height={size}
       viewBox="0 0 44 44"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={className}
+      className={`shrink-0 inline-block ${className}`}
+      style={{
+        width: `${size}px`,
+        height: `${size}px`,
+        maxWidth: `${size}px`,
+        maxHeight: `${size}px`,
+      }}
     >
       {/* Diagonal top-right pill accent in dark teal */}
       <rect
@@ -30,19 +44,19 @@ export function LaboraIcon({ className = "w-8 h-8" }: { className?: string }) {
 export default function LaboraLogo({
   variant = "dark",
   className = "",
-  iconSize = "w-8 h-8",
+  size = 32,
   textSize = "text-2xl",
 }: {
   variant?: "dark" | "light";
   className?: string;
-  iconSize?: string;
+  size?: number;
   textSize?: string;
 }) {
   const textColor = variant === "light" ? "text-white" : "text-[#06182B]";
 
   return (
-    <div className={`flex items-center gap-2.5 ${className}`}>
-      <LaboraIcon className={iconSize} />
+    <div className={`flex items-center gap-2.5 shrink-0 ${className}`}>
+      <LaboraIcon size={size} />
       <span className={`font-black tracking-tight ${textSize} ${textColor}`}>
         Labora
       </span>

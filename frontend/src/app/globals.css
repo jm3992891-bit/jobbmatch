@@ -12,3 +12,9 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+@media (min-width: 1024px) {
+  .hero-diagonal-cut {
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+  }
+}

@@ -13,7 +13,7 @@ export default function Home() {
 
       {/* Left Panel - Dark Navy with Diagonal Cut */}
       <div
-        className="w-full lg:w-[56%] xl:w-[53%] bg-[#051829] text-white flex flex-col justify-between p-8 sm:p-12 lg:py-14 lg:pl-16 lg:pr-24 xl:pl-24 xl:pr-28 relative z-10 lg:[clip-path:polygon(0_0,100%_0,85%_100%,0_100%)] shadow-2xl"
+        className="w-full lg:w-[56%] xl:w-[53%] bg-[#051829] text-white flex flex-col justify-between p-8 sm:p-12 lg:py-14 lg:pl-16 lg:pr-24 xl:pl-24 xl:pr-28 relative z-10 hero-diagonal-cut shadow-2xl"
       >
         {/* Decorative subtle angled accent bars */}
         <div className="hidden lg:block absolute -top-12 right-12 w-20 h-96 bg-[#00D494]/10 rounded-full rotate-[35deg] pointer-events-none transform -translate-y-4" />
@@ -23,7 +23,7 @@ export default function Home() {
         <div className="relative z-10 max-w-xl">
           {/* Logo */}
           <div className="flex items-center gap-3.5 mb-8">
-            <LaboraIcon className="w-10 h-10 lg:w-12 lg:h-12" />
+            <LaboraIcon size={44} />
             <span className="text-white font-black text-3xl lg:text-4xl tracking-tight">
               Labora
             </span>

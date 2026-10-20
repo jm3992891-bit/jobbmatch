@@ -46,9 +46,9 @@ export default function Navbar() {
                   ? "/candidate/dashboard"
                   : "/"
               }
-              className="flex items-center"
+              className="flex items-center shrink-0"
             >
-              <LaboraLogo variant={isHome ? "dark" : "light"} />
+              <LaboraLogo variant={isHome ? "dark" : "light"} size={32} />
             </Link>
 
             {isCandidateDashboard && (
