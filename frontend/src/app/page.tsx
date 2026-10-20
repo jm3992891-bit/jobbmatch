@@ -5,8 +5,8 @@ import { LaboraIcon } from "@/components/LaboraLogo";
 export default function Home() {
   return (
     <div
-      className="relative min-h-[calc(100vh-4rem)] flex flex-col lg:flex-row font-sans overflow-hidden bg-cover bg-center lg:bg-right"
-      style={{ backgroundImage: "url('/hero-bg.jpg')" }}
+      className="relative min-h-[calc(100vh-4rem)] flex flex-col lg:flex-row font-sans overflow-hidden bg-cover bg-no-repeat bg-center lg:bg-right"
+      style={{ backgroundImage: "url('/hero-bg.jpg')", backgroundRepeat: "no-repeat", backgroundSize: "cover" }}
     >
       {/* Mobile/Tablet Background Tint */}
       <div className="absolute inset-0 bg-[#051829]/60 lg:hidden pointer-events-none" />
@@ -14,6 +14,7 @@ export default function Home() {
       {/* Left Panel - Dark Navy with Diagonal Cut */}
       <div
         className="w-full lg:w-[56%] xl:w-[53%] bg-[#051829] text-white flex flex-col justify-between p-8 sm:p-12 lg:py-14 lg:pl-16 lg:pr-24 xl:pl-24 xl:pr-28 relative z-10 hero-diagonal-cut shadow-2xl"
+        style={{ backgroundColor: "#051829" }}
       >
         {/* Decorative subtle angled accent bars */}
         <div className="hidden lg:block absolute -top-12 right-12 w-20 h-96 bg-[#00D494]/10 rounded-full rotate-[35deg] pointer-events-none transform -translate-y-4" />
