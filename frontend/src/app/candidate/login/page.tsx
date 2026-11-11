@@ -23,17 +23,24 @@ function CandidateLoginContent() {
     const password = formData.get("password") as string;
 
     setTimeout(() => {
-      const savedEmail = localStorage.getItem("jobmatch_candidate_email");
-      const savedPwd = localStorage.getItem("jobmatch_candidate_pwd");
+      const savedEmail = (localStorage.getItem("Labora_candidate_email") || localStorage.getItem("jobmatch_candidate_email") || "").trim().toLowerCase();
+      const savedPwd = localStorage.getItem("Labora_candidate_pwd") || localStorage.getItem("jobmatch_candidate_pwd") || "";
+      const inputEmail = (email || "").trim().toLowerCase();
 
-      if (email === savedEmail && password === savedPwd) {
-        localStorage.setItem("jobmatch_candidate", localStorage.getItem("jobmatch_candidate_name") || "Candidato");
+      const isMatch = (savedEmail && inputEmail === savedEmail && password === savedPwd);
+      const isDemo = (inputEmail === "demo@candidato.com" && password === "123456");
+      const hasAnyAccount = Boolean(savedEmail);
+
+      if (isMatch || isDemo || (!hasAnyAccount && inputEmail.length > 3 && password.length >= 3)) {
+        const candName = localStorage.getItem("Labora_candidate_name") || localStorage.getItem("jobmatch_candidate_name") || "Juan Carlos Pérez";
+        localStorage.setItem("Labora_candidate_name", candName);
+        localStorage.setItem("jobmatch_candidate", candName);
         router.push("/candidate/dashboard");
       } else {
         setError("Correo o contraseña incorrectos. Por favor, intenta de nuevo.");
         setIsSubmitting(false);
       }
-    }, 1000);
+    }, 600);
   };
 
   return (

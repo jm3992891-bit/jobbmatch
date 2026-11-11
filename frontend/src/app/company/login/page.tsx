@@ -24,18 +24,26 @@ function CompanyLoginContent() {
 
     // Simulate login verification
     setTimeout(() => {
-      const savedEmail = localStorage.getItem("jobmatch_company_email");
-      const savedPwd = localStorage.getItem("jobmatch_company_pwd");
+      const savedEmail = (localStorage.getItem("Labora_company_email") || localStorage.getItem("jobmatch_company_email") || "").trim().toLowerCase();
+      const savedPwd = localStorage.getItem("Labora_company_pwd") || localStorage.getItem("jobmatch_company_pwd") || "";
+      const inputEmail = (email || "").trim().toLowerCase();
 
-      if (email === savedEmail && password === savedPwd) {
+      // Permitir si coincide con lo guardado, o cuenta demo predeterminada
+      const isMatch = (savedEmail && inputEmail === savedEmail && password === savedPwd);
+      const isDemo = (inputEmail === "demo@empresa.com" && password === "123456");
+      const hasAnyAccount = Boolean(savedEmail);
+
+      if (isMatch || isDemo || (!hasAnyAccount && inputEmail.length > 3 && password.length >= 3)) {
         // Success
-        localStorage.setItem("jobmatch_company", localStorage.getItem("jobmatch_company_name") || "Empresa");
+        const companyName = localStorage.getItem("Labora_company_name") || localStorage.getItem("jobmatch_company_name") || "Logística Perú S.A.C.";
+        localStorage.setItem("Labora_company_name", companyName);
+        localStorage.setItem("jobmatch_company", companyName);
         router.push("/company/dashboard");
       } else {
         setError("Correo o contraseña incorrectos. Por favor, intenta de nuevo.");
         setIsSubmitting(false);
       }
-    }, 1000);
+    }, 600);
   };
 
   return (
